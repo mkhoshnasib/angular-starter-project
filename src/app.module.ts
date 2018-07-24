@@ -10,11 +10,14 @@ import {Http} from './app/services/http/http-interceptor.service';
 import {LoginComponent} from './app/pages/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {routes} from './app/routers/app.router';
+import { HomeComponent } from './app/pages/home/home.component';
+import {GuardService} from './app/services/guard/guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import {routes} from './app/routers/app.router';
     routes,
   ],
   providers: [
+    GuardService,
     {
       provide: Http,
       useFactory: httpFactory,
