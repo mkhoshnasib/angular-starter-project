@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -20,8 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginFormValue) {
-    console.log('{ username: ' + loginFormValue.username + ', password: ' + loginFormValue.password + ' }');
-    // this.router.navigate(['home']);
+    if (loginFormValue.username === 'admin' && loginFormValue.password === '123') {
+      localStorage.setItem('authenticated', 'true');
+      this.toastr.success('', 'You`re successfully logged in!');
+      this.router.navigate(['home']);
+    } else {
+      this.toastr.error('', 'Invalid username or password!');
+    }
   }
 
   private createLoginForm() {
