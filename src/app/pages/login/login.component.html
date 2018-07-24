@@ -1,0 +1,16 @@
+<div class="form-container">
+  <form class="form-signin text-center" [formGroup]="loginForm" (submit)="login(loginForm.value)">
+    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label class="sr-only">Email address</label>
+    <input type="email" class="form-control" formControlName="username" placeholder="Email address">
+    <label class="sr-only">Password</label>
+    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" class="mt-2" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+  </form>
+</div>
